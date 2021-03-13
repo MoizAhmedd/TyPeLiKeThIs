@@ -6,6 +6,10 @@
   "manifest_version": 2,
 	"permissions": [
 	"<all_urls>",
+	"tabs",
+	"storage",
+	"clipboardRead",
+	"clipboardWrite",
 	"activeTab"
 	],
 	"content_scripts": [
@@ -15,7 +19,9 @@
 		],
 		"js": [
 		  "content.js"
-		]
+		],
+		"match_about_blank":true,
+		"all_frames":true
 	  }
 	],
 	"background": {

@@ -13,23 +13,28 @@ function LiKeThIs(text){
 	}
 	return res
 }
-function onClick(e) {
-	if (e.which === 1 || e.button === 0) {
-	  console.log('Left mouse button at ' + e.clientX + 'x' + e.clientY);
-	}
-	if (e.which === 2 || e.button === 1) {
-	  console.log('Middle mouse button ' + e.clientX + 'x' + e.clientY);
-	}
-	if (e.which === 3 || e.button === 2) {
+function handleKey(e) {
+	if (e.key === 't' && e.ctrlKey) {
 	  let selection = window.getSelection().toString();
-	  document.activeElement.innerText = LiKeThIs(selection)
-	  console.log('Right mouse button ' + e.clientX + 'x' + e.clientY);
-	}
-	if (e.which === 4 || e.button === 3) {
-	  console.log('Backward mouse button ' + e.clientX + 'x' + e.clientY);
-	}
-	if (e.which === 5 || e.button === 4) {
-	  console.log('Forward mouse button ' + e.clientX + 'x' + e.clientY);
+	  let converted = LiKeThIs(selection);
+	  navigator.clipboard.writeText(converted).then(()=>{
+		  console.log('heyyy');
+		if(document.activeElement instanceof HTMLIFrameElement){
+			document.activeElement.contentDocument.execCommand("Paste");
+		} else{
+			document.execCommand("Paste");
+		}
+	  })
 	}
   }
-  window.addEventListener("mousedown", onClick);
+  window.addEventListener("keydown", handleKey);
+
+  
+
+  navigator.clipboard.writeText(converted).then(()=>{
+	if(document.activeElement instanceof HTMLIFrameElement){
+		document.activeElement.contentDocument.execCommand("Paste");
+	} else{
+		document.execCommand("Paste");
+	}
+  })
