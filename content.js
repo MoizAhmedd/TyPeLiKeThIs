@@ -14,27 +14,22 @@ function LiKeThIs(text){
 	return res
 }
 function handleKey(e) {
-	if (e.key === 't' && e.ctrlKey) {
+	if (e.key === 'i' && e.ctrlKey) {
 	  let selection = window.getSelection().toString();
 	  let converted = LiKeThIs(selection);
-	  navigator.clipboard.writeText(converted).then(()=>{
-		  console.log('heyyy');
-		if(document.activeElement instanceof HTMLIFrameElement){
-			document.activeElement.contentDocument.execCommand("Paste");
-		} else{
-			document.execCommand("Paste");
-		}
-	  })
+	  try {
+		selection && converted && navigator.clipboard.writeText(converted).then(()=>{
+			if(document.activeElement instanceof HTMLIFrameElement){
+				document.activeElement.contentDocument.execCommand("Paste");
+			} else{
+				document.execCommand("Paste");
+			}
+		})
+	  } catch(error) {
+		  console.log('Couldnt copy/convert/paste');
+	  }
+
 	}
   }
+
   window.addEventListener("keydown", handleKey);
-
-  
-
-  navigator.clipboard.writeText(converted).then(()=>{
-	if(document.activeElement instanceof HTMLIFrameElement){
-		document.activeElement.contentDocument.execCommand("Paste");
-	} else{
-		document.execCommand("Paste");
-	}
-  })

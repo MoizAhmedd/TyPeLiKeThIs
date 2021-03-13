@@ -3,14 +3,16 @@
 	"name": "tYpElIkEtHis",
 	"version": "1.0.1",
 	"description": "tYpE lIkE tHis on any website",
-  "manifest_version": 2,
+	"icons": {
+		"16": "16.png",
+		"32": "32.png",
+		"48": "48.png",
+		"128": "128.png"
+	},
+    "manifest_version": 2,
 	"permissions": [
-	"<all_urls>",
-	"tabs",
-	"storage",
-	"clipboardRead",
-	"clipboardWrite",
-	"activeTab"
+		"clipboardRead",
+		"clipboardWrite"
 	],
 	"content_scripts": [
 	  {
@@ -24,11 +26,6 @@
 		"all_frames":true
 	  }
 	],
-	"background": {
-		"scripts": [
-	   "background.js"
-	]
-	},
 	"browser_action": {
 	"default_title": "TyPeLiKeThIs"
 	}
